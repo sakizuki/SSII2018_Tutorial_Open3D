@@ -46,13 +46,13 @@ def execute_global_registration(
     return result
 
 #ICPによるリファイン
-def refine_registration(source, target, source_fpfh, target_fpfh, voxel_size):
+def refine_registration(source, target, trans, voxel_size):
     distance_threshold = voxel_size * 0.4
     print(":: Point-to-plane ICP registration is applied on original point")
     print("   clouds to refine the alignment. This time we use a strict")
     print("   distance threshold %.3f." % distance_threshold)
-    result = registration_icp(source, target, distance_threshold,
-            result_ransac.transformation,
+    result = registration_icp(source, target, 
+            distance_threshold, trans,
             TransformationEstimationPointToPlane())
     return result
 
@@ -76,7 +76,6 @@ if __name__ == "__main__":
     draw_registration_result(source_kp, target_kp, result_ransac.transformation)
 
     #ICPによる微修正
-    result_icp = refine_registration(source, target,
-            source_fpfh, target_fpfh, voxel_size)
+    result_icp = refine_registration(source, target, result_ransac.transformation, voxel_size)
     print(result_icp)
     draw_registration_result(source, target, result_icp.transformation)
