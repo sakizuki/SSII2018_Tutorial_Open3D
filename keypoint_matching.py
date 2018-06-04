@@ -1,4 +1,4 @@
-# Open3Dを使った6DoF推定
+# キーポイントマッチングによる位置姿勢認識
 
 from open3d import *
 import numpy as np
@@ -59,8 +59,8 @@ def refine_registration(source, target, trans, voxel_size):
 if __name__ == "__main__":
     #データ読み込み
     print(":: Load two point clouds to be matched.")
-    source = read_point_cloud("bun.pcd")
-    target = read_point_cloud("bun045.pcd")
+    source = read_point_cloud("./data/bun.pcd")
+    target = read_point_cloud("./data/bun045.pcd")
     draw_registration_result(source, target, np.identity(4))
 
     #キーポイント検出と特徴量抽出
