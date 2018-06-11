@@ -28,7 +28,7 @@
 インストール方法はそれぞれのレポジトリで確認してください．
 
 ### プログラムのビルド
-[src]内のデータ取得のためのプログラム(rs-capture)のみビルドが必要です．
+ディレクトリ「src」内のデータ取得のためのプログラム(rs-capture)のみビルドが必要です．
 
 ```
 mkdir build
@@ -39,11 +39,12 @@ make
 
 ## 各プログラムの説明
 ### rs-capture
-buildディレクトリで，下記のコマンドを実行してください．
+Realsense SR300, D415, D435でRGBD画像群を取得するコードサンプルです． 
+実行時は「build」ディレクトリで，下記のコマンドを実行してください．
 ```
 ./rs-capture
 ```
-[image]と[depth]というディレクトリが作成され，（すでにある場合は削除してから再度作成します．）その中にセンサで撮影されたRGB画像と距離画像を保存します．
+「image」と「depth」というディレクトリが作成され，その中にセンサで撮影されたRGB画像と距離画像を保存します．
 ここで撮影したデータは，Open3Dが提供する[Reconstruction System](http://www.open3d.org/docs/tutorial/ReconstructionSystem/index.html)によって3次元復元することができます．
 
 ### kdtree.py

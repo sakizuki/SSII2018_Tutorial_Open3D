@@ -62,8 +62,8 @@ def refine_registration(source, target, trans, voxel_size):
 if __name__ == "__main__":
     #データ読み込み
     print(":: Load two point clouds to be matched.")
-    source = read_point_cloud("./data/bun000.pcd")
-    target = read_point_cloud("./data/bun045.pcd")
+    source = read_point_cloud("../data/bun000.pcd")
+    target = read_point_cloud("../data/bun045.pcd")
     draw_registration_result(source, target, np.identity(4))
 
 
