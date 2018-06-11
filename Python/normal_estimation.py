@@ -7,7 +7,7 @@ import copy
 if __name__ == "__main__":
 
     #データ読み込み
-    pcd_ = read_point_cloud("./data/bun.pcd")
+    pcd_ = read_point_cloud("../data/bun.pcd")
     print(":: 元の点群の可視化")
     draw_geometries([pcd_]) # まず，そのままの点群を表示する
 

@@ -6,7 +6,7 @@ from open3d import *
 if __name__ == "__main__":
 
     # 点群の読み込み
-    pcd = read_point_cloud("./data/bun.pcd")
+    pcd = read_point_cloud("../data/bun.pcd")
 
     pcd.paint_uniform_color([0.5, 0.5, 0.5]) #元の点群をグレーにする
     pcd_tree = KDTreeFlann(pcd)
