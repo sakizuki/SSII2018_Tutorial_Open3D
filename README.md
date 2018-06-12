@@ -44,7 +44,7 @@ make
 RealSense SR300, D415, D435でRGBD画像群を取得するコードサンプルです． 
 実行時は「build」ディレクトリにて下記のコマンドを実行してください．
 ```
-cd <path_to_your_SSII2018_Tutorial_Open3D>/build/
+cd <path_to_SSII2018_Tutorial_Open3D>/build/
 ./rs-capture
 ```
 「image」と「depth」というディレクトリが作成され，その中にセンサで撮影されたRGB画像と距離画像を保存します．
