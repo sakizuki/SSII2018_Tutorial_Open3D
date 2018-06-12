@@ -18,10 +18,10 @@ Mat depth_frame_to_meters(const rs2::pipeline& pipe, const rs2::depth_frame& f);
 
 int main(int argc, char * argv[])
 {
-    system("rm -fr ../image");
-    system("rm -fr ../depth");
-    system("mkdir ../image");
-    system("mkdir ../depth");
+    system("rm -fr image");
+    system("rm -fr depth");
+    system("mkdir image");
+    system("mkdir depth");
 
     // Declare depth colorizer for pretty visualization of depth data
     rs2::colorizer color_map;
@@ -68,8 +68,8 @@ int main(int argc, char * argv[])
 
         waitKey(1);
 
-        sprintf( name_c,"../image/image%05d.png", cnt );
-        sprintf( name_d,"../depth/depth%05d.png", cnt );
+        sprintf( name_c,"image/image%05d.png", cnt );
+        sprintf( name_d,"depth/depth%05d.png", cnt );
 
         imwrite( name_c, im_c);
         imwrite( name_d, im_d);
