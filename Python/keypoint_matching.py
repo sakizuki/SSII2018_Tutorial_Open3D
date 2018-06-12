@@ -14,12 +14,13 @@ def draw_registration_result(source, target, transformation):
     draw_geometries([source_temp, target_temp])
 
 #キーポイント検出，法線推定，特徴記述
+# orientをFalseにすることで，法線方向の修正をオフにできます．
 def preprocess_point_cloud(pcd, voxel_size, orient=True):
     print(":: Downsample with a voxel size %.3f." % voxel_size)
     pcd_kp = voxel_down_sample(pcd, voxel_size)
 
     radius_normal = voxel_size * 2
-    viewpoint = np.array([0.,0.,0.], dtype='float64')
+    viewpoint = np.array([0.,0.,100.], dtype='float64')
     estimate_normals(pcd_kp, KDTreeSearchParamHybrid(radius = radius_normal, max_nn = 30))
     if orient == True:
         orient_normals_towards_camera_location( pcd_kp, camera_location = viewpoint )        
@@ -64,13 +65,14 @@ if __name__ == "__main__":
     print(":: Load two point clouds to be matched.")
     source = read_point_cloud("../data/bun000.pcd")
     target = read_point_cloud("../data/bun045.pcd")
-    draw_registration_result(source, target, np.identity(4))
 
+    draw_registration_result(source, target, np.identity(4))
 
     #キーポイント検出と特徴量抽出
     voxel_size = 0.01
-    source_kp, source_fpfh = preprocess_point_cloud(source, voxel_size, orient=False)
+    source_kp, source_fpfh = preprocess_point_cloud(source, voxel_size)
     target_kp, target_fpfh = preprocess_point_cloud(target, voxel_size)
+    draw_registration_result(source_kp, target_kp, np.identity(4))
 
     #RANSACによる姿勢推定
     result_ransac = execute_global_registration(source_kp, target_kp,
