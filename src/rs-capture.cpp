@@ -32,7 +32,9 @@ int main(int argc, char * argv[])
     cfg.enable_stream(RS2_STREAM_DEPTH, 640, 480, RS2_FORMAT_Z16, 30);
 
     // Declare RealSense pipeline, encapsulating the actual device and sensors
-    rs2::pipeline pipe(cfg);
+    rs2::pipeline pipe;
+    rs2::pipeline_profile selection = pipe.start(cfg);
+    auto sensor = selection.get_device().first<rs2::depth_sensor>();
     auto scale =  sensor.get_depth_scale();
 
     cerr<<"Scale: "<<scale<<endl;
